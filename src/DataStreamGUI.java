@@ -44,6 +44,9 @@ public class DataStreamGUI extends JFrame {
         searchButton.addActionListener(e -> searchFile());
         quitButton.addActionListener(e -> System.exit(0));
 
+        originalTextArea.setText("No file loaded.");
+        searchButton.setEnabled(false);
+
         pack();
         setLocationRelativeTo(null);
     }
@@ -60,9 +63,15 @@ public class DataStreamGUI extends JFrame {
                 originalTextArea.setText(String.join("\n", content));
                 originalTextArea.setCaretPosition(0);
                 filteredTextArea.setText("");
+                searchButton.setEnabled(true);
             } else {
                 JOptionPane.showMessageDialog(this, "Failed to load file.");
+                originalTextArea.setText("No file loaded.");
+                searchButton.setEnabled(false);
             }
+        } else {
+            originalTextArea.setText("No file loaded.");
+            searchButton.setEnabled(false);
         }
     }
 
